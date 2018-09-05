@@ -4,6 +4,7 @@ let clickCount=0;
 let mySound = new sound('sounds/crash.mp3');
 let mySound2 = new sound('sounds/knock.wav');
 let mySound3 = new sound('sounds/Baby-chick-sounds.mp3');
+let fireSound = new sound('sounds/fire7s.mp3');
 let clicks = 20;
 
     function sound(src) {

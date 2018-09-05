@@ -1,5 +1,5 @@
 // 4 furry & coin
-
+$(function () {
 function Furry() {
     this.x = 0;
     this.y = 0;
@@ -80,9 +80,9 @@ function Game() {
         this.furry.direction="left";
         } else if (event.which===39){
         this.furry.direction="right";
-    } else if (event.which===38) {
+        } else if (event.which===38) {
         this.furry.direction="up";
-    } else if (event.which===40){
+        } else if (event.which===40){
         this.furry.direction="down";
     }
     };
@@ -108,7 +108,10 @@ function Game() {
     var score = document.querySelector('.endScore');
     var strong = document.querySelector('strong');
     score.textContent=strong.textContent;
-    this.hideVisibleFurry();
+    fireSound.play();
+    oldMcDonaldSound.stop();
+    // this.hideVisibleFurry();
+
     }
     }
 }
@@ -116,12 +119,14 @@ function Game() {
 
 //first view
 
-$(function () {
+
 
     let clickCount=0;
     let mySound = new sound('sounds/crash.mp3');
     let mySound2 = new sound('sounds/knock.wav');
     let mySound3 = new sound('sounds/Baby-chick-sounds.mp3');
+    let fireSound = new sound('sounds/fire7s.mp3');
+    let oldMcDonaldSound = new sound('sounds/Old-McDonald-had-a-farm.mp3');
     let clicks = 20;
 
     function sound(src) {
@@ -173,18 +178,21 @@ $(function () {
     $('.play').on('click', function () {
         $('.game').removeClass('invisible');
         $('.gameBeginning').addClass('invisible');
+        mySound3.stop();
         //zad7
         var newGame = new Game();
         newGame.showFurry();
         newGame.showCoin();
+        oldMcDonaldSound.play();
 
 //odpalam metode startGame na obiekcie newGame
         newGame.startGame();
-    })
+    });
 
     $('#restart').click(function(){
         $('.coin').removeClass('coin');
         $("#over").addClass('invisible');
+        oldMcDonaldSound.play();
         var newGame = new Game();
         newGame.showFurry();
         newGame.showCoin();
